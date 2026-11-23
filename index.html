@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Pistas del tesoro</title><link rel="stylesheet" href="style.css"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script></head>
+<body><header><p>COLEGIO · BÚSQUEDA DEL TESORO</p><h1>Pistas del recorrido</h1><p>Elegí un color y encontrá el lugar de la siguiente pista.</p></header><main>
+<section class="panel"><h2>Agregar o editar pista</h2><form id="form"><input id="id" type="hidden"><div class="fields">
+<label>Nombre del punto<input id="nombre" required maxlength="100" placeholder="Ej.: Banco del parque"></label>
+<label>Color del recorrido<select id="color" required><option value="">Elegí un color</option><option value="azul">Azul</option><option value="verde">Verde</option></select></label>
+<label>Número de orden<input id="orden" type="number" min="1" step="1" required></label>
+<label class="wide">Texto de la pista<textarea id="texto" required rows="2" maxlength="500"></textarea></label>
+<label>Latitud<input id="lat" required inputmode="decimal" placeholder="-25.2867"></label>
+<label>Longitud<input id="lng" required inputmode="decimal" placeholder="-57.3333"></label></div><button id="guardar">Guardar pista</button> <button type="button" class="secondary" id="limpiar">Limpiar</button><p id="msg"></p></form></section>
+<section class="panel"><div class="heading"><div><h2>Pistas registradas</h2><p>Filtrá por color y elegí un registro.</p></div><label>Filtrar<select id="filtro"><option value="todos">Todos</option><option value="azul">Azul</option><option value="verde">Verde</option></select></label></div>
+<div class="tablewrap"><table><thead><tr><th>Color</th><th>Orden</th><th>Nombre</th><th>Pista</th><th>Acciones</th></tr></thead><tbody id="lista"><tr><td colspan="5">Cargando...</td></tr></tbody></table></div></section>
+<section class="panel"><h2>Ubicación en Google Maps</h2><p id="seleccion">Seleccioná «Ver mapa» en un registro.</p><div id="mapa">Configurá Google Maps para mostrar el mapa.</div></section><footer>Aplicación educativa · Supabase + Google Maps</footer></main>
+<script src="config.js"></script><script src="app.js"></script><script>window.initMap=()=>window.iniciarMapa&&window.iniciarMapa();const k=window.APP_CONFIG?.googleMapsKey;if(k&&!k.includes("PEGAR_")){const s=document.createElement("script");s.src="https://maps.googleapis.com/maps/api/js?key="+encodeURIComponent(k)+"&callback=initMap";s.async=true;s.defer=true;document.head.appendChild(s)}</script></body></html>
